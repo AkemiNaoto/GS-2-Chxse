@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
 {
 
     private SpriteRenderer Sr;
+    [SerializeField] private float ProxAtaque;
     private float Velocidade = 5.0f;
     private float ParryCooldown = 5.0f;
     [SerializeField] private float TempoAtual = 0.0f;
     [SerializeField] private bool ParryActive = true;
+    [SerializeField] private GameObject Ataque;
     private Animator Anima;
 
     void Start()
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
 
         Mover();
         Parry();
+        Attack();
 
     }
 
@@ -71,14 +74,6 @@ public class Player : MonoBehaviour
             Anima.SetBool("Subir", false);
             transform.Translate(Horizontal, Vertical, 0.0f);
 
-
-        }
-
-        else if (Input.GetKey(KeyCode.J))
-        {
-
-            Anima.ResetTrigger("Ataque");
-            Anima.SetTrigger("Ataque");
 
         }
 
@@ -128,4 +123,72 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    public void Attack()
+    {
+
+        int AtaqueSeguido = 0;
+
+        if (Input.GetKey(KeyCode.J))
+        {
+
+            Anima.ResetTrigger("Ataque");
+            Anima.SetTrigger("Ataque");
+            Ataque.SetActive(true);
+            Invoke("OffAttack", 0.42f);
+            
+
+            /*if (AtaqueSeguido == 0 && ProxAtaque == 0.0f)
+            {
+
+                Anima.ResetTrigger("Ataque");
+                Anima.SetTrigger("Ataque");
+                ProxAtaque += 1 * Time.deltaTime;
+                AtaqueSeguido++;
+                Ataque.SetActive(true);
+                Invoke("OffAttack", 0.42f);
+
+            }
+
+            else if (AtaqueSeguido == 1 && ProxAtaque == 0.25f)
+            {
+
+                Anima.ResetTrigger("Ataque2");
+                Anima.SetTrigger("Ataque2");
+                ProxAtaque += 1 * Time.deltaTime;
+                AtaqueSeguido++;
+
+            }
+
+            else if (AtaqueSeguido == 2 && ProxAtaque == 0.50f)
+            {
+
+                Anima.ResetTrigger("Ataque3");
+                Anima.SetTrigger("Ataque3");
+                ProxAtaque += 1 * Time.deltaTime;
+                AtaqueSeguido++;
+
+            }
+
+            else if (AtaqueSeguido == 3 && ProxAtaque == 0.75f)
+            {
+
+                Anima.ResetTrigger("Ataque4");
+                Anima.SetTrigger("Ataque4");
+                ProxAtaque += 1 * Time.deltaTime;
+                AtaqueSeguido++;
+
+            }*/
+
+        }
+
+    }
+
+    public void OffAttack()
+    {
+
+        Ataque.SetActive(false);
+
+    }
+
 }

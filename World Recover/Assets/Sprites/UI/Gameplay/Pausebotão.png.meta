@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,7 +137,7 @@ TextureImporter:
         width: 106
         height: 106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -154,12 +154,12 @@ TextureImporter:
       name: "Pausebot\xE3o_1"
       rect:
         serializedVersion: 2
-        x: 74
-        y: 0
-        width: 140
-        height: 140
+        x: 91
+        y: 17
+        width: 106
+        height: 106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -176,7 +176,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 58ab5d19c6efc8441bd37285563eafb9
     internalID: 0
     vertices: []
     indices: 

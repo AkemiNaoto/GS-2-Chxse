@@ -43,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -81,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -135,12 +135,12 @@ TextureImporter:
       name: continuar_0
       rect:
         serializedVersion: 2
-        x: 73
-        y: 59
-        width: 393
-        height: 91
+        x: 57
+        y: 42
+        width: 421
+        height: 125
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -162,7 +162,7 @@ TextureImporter:
         width: 421
         height: 125
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -179,12 +179,12 @@ TextureImporter:
       name: continuar_2
       rect:
         serializedVersion: 2
-        x: 959
-        y: 61
-        width: 393
-        height: 91
+        x: 943
+        y: 42
+        width: 421
+        height: 125
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -201,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: aedd4877192caa74ea86a9903ae3e444
     internalID: 0
     vertices: []
     indices: 
