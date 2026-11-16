@@ -34,12 +34,14 @@ public class Player : MonoBehaviour
     public void Mover()
     {
 
+        float Horizontal = Input.GetAxisRaw("Horizontal") * Velocidade * Time.deltaTime;
+        float Vertical = Input.GetAxisRaw("Vertical") * Velocidade * Time.deltaTime;
 
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
 
             transform.eulerAngles = new Vector2(0, 180);
-            transform.Translate(Input.GetAxisRaw("Horizontal") * Velocidade * Time.deltaTime * -1, Input.GetAxisRaw("Vertical") * Velocidade * Time.deltaTime, 0.0f);
+            transform.Translate(Horizontal * -1.0f, Vertical, 0.0f);
 
         }
 
@@ -47,7 +49,8 @@ public class Player : MonoBehaviour
         {
 
             transform.eulerAngles = new Vector2(0, 0);
-            transform.Translate(Input.GetAxisRaw("Horizontal") * Velocidade * Time.deltaTime, Input.GetAxisRaw("Vertical") * Velocidade * Time.deltaTime, 0.0f);
+            transform.Translate(Horizontal, Vertical, 0.0f);
+
 
         }
 
@@ -56,6 +59,8 @@ public class Player : MonoBehaviour
 
             Anima.SetBool("Subir", true);
             Anima.SetBool("Descer", false);
+            transform.Translate(Horizontal, Vertical, 0.0f);
+
 
         }
 
@@ -64,6 +69,8 @@ public class Player : MonoBehaviour
 
             Anima.SetBool("Descer", true);
             Anima.SetBool("Subir", false);
+            transform.Translate(Horizontal, Vertical, 0.0f);
+
 
         }
 

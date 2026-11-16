@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Mapa
+    uniqueID: 1481337575
+    locked: 0
+  - name: Obstaculos
+    uniqueID: 1736965011
+    locked: 0
+  - name: Personagens
+    uniqueID: 3237123829
+    locked: 0
+  - name: UI
+    uniqueID: 2652870457
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  m_MigratedRenderPipelines: []
