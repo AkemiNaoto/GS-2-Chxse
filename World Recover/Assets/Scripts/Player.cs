@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
             Anima.SetTrigger("Ataque");
             Ataque.SetActive(true);
             Invoke("OffAttack", 0.42f);
-            
+
 
             /*if (AtaqueSeguido == 0 && ProxAtaque == 0.0f)
             {

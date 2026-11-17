@@ -4,10 +4,18 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
 
+    private SomController Som;
+
+    void Start()
+    {
+
+        Som = GameObject.FindWithTag("Audio").GetComponent<SomController>();
+
+    }
     public void Jogar()
     {
 
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Cutscene");
 
     }
 
@@ -27,11 +35,11 @@ public class MenuController : MonoBehaviour
     public void Sair()
     {
 
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
-        #endif
+#endif
 
     }
 

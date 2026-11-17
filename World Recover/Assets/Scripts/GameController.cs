@@ -5,7 +5,14 @@ public class GameController : MonoBehaviour
 {
     
     [SerializeField] private GameObject Pause,TelaPause;
+    private SomController Som;
 
+    void Start()
+    {
+        
+        Som = GameObject.FindWithTag("Audio").GetComponent<SomController>();  
+
+    }
     public void BPause()
     {
         

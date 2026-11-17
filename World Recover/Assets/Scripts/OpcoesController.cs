@@ -28,7 +28,7 @@ public class OpcoesController : MonoBehaviour
 
         Som.AudioControle.SetFloat("VolumeMusga", Mathf.Log10(Valor) * 20);
         PlayerPrefs.SetFloat("PrefMusica", Valor);
-        Som.VolumeMusica = MusicaSlider.value;
+        //Som.VolumeMusica = MusicaSlider.value;
 
     }
 
@@ -37,7 +37,7 @@ public class OpcoesController : MonoBehaviour
 
         Som.AudioControle.SetFloat("VolumeSFX", Mathf.Log10(Valor) * 20);
         PlayerPrefs.SetFloat("PrefSfx", Valor);
-        Som.VolumeSFX = SfxSlider.value;
+        //Som.VolumeSFX = SfxSlider.value;
 
     }
 
