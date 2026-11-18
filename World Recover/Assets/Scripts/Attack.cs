@@ -32,17 +32,13 @@ public class Attack : MonoBehaviour
         if (frameCounter > 0)
             frameCounter--;
 
-    }
-
-    void OnTriggerEnter2D(Collider2D Col)
-    {
-
-        if(Col.CompareTag("Enemy"))
+        if (frameCounter == 0)
         {
             
-           Acertou = true; 
 
+            
         }
-        
+
     }
+
 }

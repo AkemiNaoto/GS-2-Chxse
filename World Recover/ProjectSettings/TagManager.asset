@@ -9,6 +9,7 @@ TagManager:
   - Cutscene
   - Confirmacao
   - AtaqueInimigo
+  - Visao
   layers:
   - Default
   - TransparentFX

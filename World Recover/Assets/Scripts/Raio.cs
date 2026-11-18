@@ -12,33 +12,4 @@ public class Raio : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D Col)
-    {
-
-
-        {
-
-            if (Col.CompareTag("Player"))
-            {
-                
-                Inimigo.Atacar();
-
-            }
-
-        }
-
-    }
-
-    void OnTriggerExit2D(Collider2D Col)
-    {
-
-        if (Col.CompareTag("Player"))
-        {
-            
-            Inimigo.Mover();
-
-        }
-
-    }
-
 }

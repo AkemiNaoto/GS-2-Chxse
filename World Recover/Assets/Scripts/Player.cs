@@ -1,6 +1,4 @@
 using System;
-using System.Xml;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -15,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject Ataque;
     private Animator Anima;
     public float Vida = 100f;
+    public bool UsouParry = false;
 
     void Start()
     {
@@ -22,6 +21,7 @@ public class Player : MonoBehaviour
         Sr = GetComponent<SpriteRenderer>();
         Anima = GetComponent<Animator>();
         ParryActive = true;
+        UsouParry = false;
 
     }
 
@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
 
             Anima.SetBool("Parry", false);
             TempoAtual += 1 * Time.deltaTime;
+            UsouParry = false;
 
         }
 
@@ -117,6 +118,7 @@ public class Player : MonoBehaviour
             {
 
                 Anima.SetBool("Parry", true);
+                UsouParry = true;
                 ParryActive = false;
                 TempoAtual = 0;
 
@@ -190,6 +192,68 @@ public class Player : MonoBehaviour
     {
 
         Ataque.SetActive(false);
+
+    }
+
+    void OnTriggerEnter2D(Collider2D Col)
+    {
+        if (Col.tag == "Visao")
+        {
+            if (UsouParry == true)
+            {
+
+                Col.GetComponentInParent<Enemy>().Stun();
+                Col.GetComponentInParent<Enemy>().transform.position += transform.right * 1f;
+                Col.GetComponent<AttackI>().Stun = true;
+                Col.GetComponent<AttackI>().TempoStun = 0f;
+
+            }
+
+            else if (UsouParry == false)
+            {
+
+                Col.GetComponentInParent<Enemy>().Invoke("Atacar", 0.5f);
+                Col.GetComponentInParent<Enemy>().PodeMover = false;
+
+            }
+
+        }
+
+        if (Col.tag == "AtaqueInimigo")
+        {
+
+            if (UsouParry == true)
+            {
+
+                Col.GetComponentInParent<Enemy>().Stun();
+                Col.GetComponent<AttackI>().Stun = true;
+                Col.GetComponent<AttackI>().TempoStun = 0f;
+
+            }
+
+            else if (UsouParry == false)
+            {
+
+                Vida -= 10f;
+
+            }
+
+        }
+
+    }
+
+    void OnTriggerExit2D(Collider2D Col)
+    {
+
+        if (Col.tag == "Visao")
+        {
+
+            Col.GetComponentInParent<Enemy>().StopCoroutine("Ataque");
+            Col.GetComponentInParent<Enemy>().movingOnX = true;
+            Col.GetComponentInParent<Enemy>().MeuAtaque.SetActive(false);
+            Col.GetComponentInParent<Enemy>().PodeMover = true;
+
+        }
 
     }
 
