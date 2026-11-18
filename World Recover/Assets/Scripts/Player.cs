@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
     public void Attack()
     {
 
-        int AtaqueSeguido = 0;
+        //int AtaqueSeguido = 0;
 
         if (Input.GetKey(KeyCode.J))
         {

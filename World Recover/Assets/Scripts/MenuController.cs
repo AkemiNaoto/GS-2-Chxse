@@ -5,17 +5,33 @@ public class MenuController : MonoBehaviour
 {
 
     private SomController Som;
+    [SerializeField] private GameObject Confirmacao;
 
     void Start()
     {
 
         Som = GameObject.FindWithTag("Audio").GetComponent<SomController>();
+        Confirmacao.SetActive(false);
 
     }
     public void Jogar()
     {
 
+        Confirmacao.SetActive(true);
+
+    }
+
+    public void Sim()
+    {
+
         SceneManager.LoadScene("Cutscene");
+
+    }
+
+    public void Nao()
+    {
+
+        SceneManager.LoadScene("Gameplay");
 
     }
 

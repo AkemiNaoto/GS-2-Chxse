@@ -31,7 +31,7 @@ public class CutSceneController : MonoBehaviour
         ImagemCut.color = new Color(0f, 0f, 0f, 1f);
         ImagemCut.sprite = Imagens[0];
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         ImagemCut.color = new Color(1f, 1f, 1f, 1f);
 
@@ -39,11 +39,11 @@ public class CutSceneController : MonoBehaviour
 
         ImagemCut.sprite = Imagens[1]; //Olhos abertos
 
-        yield return new WaitForSeconds(14f);
+        yield return new WaitForSeconds(13f);
 
         ImagemCut.sprite = Imagens[2]; //Robô sugando água
 
-        yield return new WaitForSeconds(12f);
+        yield return new WaitForSeconds(9f);
 
         ImagemCut.sprite = Imagens[3]; //Máquina do tempo
 
