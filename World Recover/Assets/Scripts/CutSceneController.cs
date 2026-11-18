@@ -43,7 +43,7 @@ public class CutSceneController : MonoBehaviour
 
         ImagemCut.sprite = Imagens[2]; //Robô sugando água
 
-        yield return new WaitForSeconds(9f);
+        yield return new WaitForSeconds(15.5f);
 
         ImagemCut.sprite = Imagens[3]; //Máquina do tempo
 
@@ -55,7 +55,7 @@ public class CutSceneController : MonoBehaviour
 
         ImagemCut.sprite = Imagens[5]; //Hospedeira
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(8f);
 
         ImagemCut.color = new Color(0f, 0f, 0f, 255f);
         SceneManager.LoadScene("Gameplay");

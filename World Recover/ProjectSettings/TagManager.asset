@@ -8,6 +8,7 @@ TagManager:
   - Audio
   - Cutscene
   - Confirmacao
+  - AtaqueInimigo
   layers:
   - Default
   - TransparentFX

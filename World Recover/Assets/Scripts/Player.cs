@@ -9,11 +9,12 @@ public class Player : MonoBehaviour
     private SpriteRenderer Sr;
     [SerializeField] private float ProxAtaque;
     private float Velocidade = 5.0f;
-    private float ParryCooldown = 5.0f;
-    [SerializeField] private float TempoAtual = 0.0f;
+    private float Estamina = 3.0f;
+    public float TempoAtual = 0.0f;
     [SerializeField] private bool ParryActive = true;
     [SerializeField] private GameObject Ataque;
     private Animator Anima;
+    public float Vida = 100f;
 
     void Start()
     {
@@ -93,7 +94,7 @@ public class Player : MonoBehaviour
     public void Parry()
     {
 
-        if (ParryActive == false && TempoAtual < ParryCooldown)
+        if (ParryActive == false && TempoAtual < Estamina)
         {
 
             Anima.SetBool("Parry", false);
@@ -101,10 +102,10 @@ public class Player : MonoBehaviour
 
         }
 
-        else if (ParryActive == false && TempoAtual >= ParryCooldown)
+        else if (ParryActive == false && TempoAtual >= Estamina)
         {
 
-            TempoAtual = 0;
+            TempoAtual = 3;
             ParryActive = true;
 
         }
@@ -117,6 +118,7 @@ public class Player : MonoBehaviour
 
                 Anima.SetBool("Parry", true);
                 ParryActive = false;
+                TempoAtual = 0;
 
             }
 

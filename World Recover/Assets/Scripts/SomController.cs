@@ -71,6 +71,7 @@ public class SomController : MonoBehaviour
 
             }
             ControleSom.Stop();
+            ControleSom.loop = false;
             ControleSom.clip = SomCutscene;
             Invoke("Tocar", 0.5f);
 

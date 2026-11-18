@@ -1,111 +1,148 @@
-using System.Numerics;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
 
-    private Transform Player, Inimigo;
-    private float DistanciaFinal;
+    private Vector3 Player;
+    [SerializeField] Transform target;
+    [SerializeField] float speed = 4f;
+    [SerializeField] float stopDistance = 1f;
+    [SerializeField] float axisSwitchBias = 0.2f;
+    private Attack Ataque;
+    private Animator Anima;
+    private float Vida;
+
+    Rigidbody2D rb;
+    bool movingOnX = true;
+
+    void Awake() => rb = GetComponent<Rigidbody2D>();
 
     void Start()
     {
 
-        Player = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        Inimigo = GetComponent<Transform>();
+        Anima = GetComponent<Animator>();
+        Player = target.position;
+        Vida = 50f;
+        Ataque = GameObject.FindWithTag("Ataque").GetComponent<Attack>();
 
     }
 
+    public void Atacar()
+    {
+        
+        rb.linearVelocity = Vector2.zero;
+        Anima.SetTrigger("Atacando");
 
-    void Update()
+    }
+
+    void FixedUpdate()
     {
 
+        if (Player != target.position)
+        {
+
+            Anima.SetTrigger("Levantando");
+            Invoke("Mover", 0.6f);
+
+        }
+
     }
 
-    void Seguir() { }
-
-    void MaisProximo()
+    public void Mover()
     {
 
-        float DistanciaX, DistanciaY;
+        Vector2 diff = target.position - transform.position;
+        float absX = Mathf.Abs(diff.x);
+        float absY = Mathf.Abs(diff.y);
 
-        if (Inimigo.transform.position.x < 0)
+        if (absX < stopDistance && absY < stopDistance)
         {
 
-            if (Player.transform.position.x >= 0)
-            {
-
-                DistanciaX = (Inimigo.transform.position.x * -1) + Player.transform.position.x;
-
-            }
-
-            else if (Player.transform.position.x < 0)
-            {
-
-                DistanciaX = (Inimigo.transform.position.x - Player.transform.position.x) * -1;
-
-            }
+            rb.linearVelocity = Vector2.zero;
+            return;
 
         }
 
-        else if (Inimigo.transform.position.x >= 0)
+        if (movingOnX && absY > absX + axisSwitchBias) movingOnX = false;
+        else if (!movingOnX && absX > absY + axisSwitchBias) movingOnX = true;
+
+        if (movingOnX && absX < stopDistance) movingOnX = false;
+        if (!movingOnX && absY < stopDistance) movingOnX = true;
+
+        Vector2 dir = movingOnX
+        ? new Vector2(Mathf.Sign(diff.x), 0f)
+        : new Vector2(0f, Mathf.Sign(diff.y));
+
+        rb.linearVelocity = dir * speed;
+
+        if (rb.linearVelocity.x < 0)
         {
 
-            if (Player.transform.position.x >= 0)
-            {
-
-                DistanciaX = Inimigo.transform.position.x + Player.transform.position.x;
-
-            }
-
-            else if (Player.transform.position.x < 0)
-            {
-
-                DistanciaX = Inimigo.transform.position.x + (Player.transform.position.x * -1);
-
-            }
+            transform.eulerAngles = new Vector2(0f, 180f);
+            Anima.SetBool("Descendo", false);
+            Anima.SetBool("Subindo", false);
 
         }
 
-        if (Inimigo.transform.position.y < 0)
+        else if (rb.linearVelocity.x > 0)
         {
 
-            if (Player.transform.position.y >= 0)
-            {
-
-                DistanciaY = (Inimigo.transform.position.y * -1) + Player.transform.position.y;
-
-            }
-
-            else if (Player.transform.position.x < 0)
-            {
-
-                DistanciaY = (Inimigo.transform.position.y - Player.transform.position.y) * -1;
-
-            }
+            transform.eulerAngles = new Vector2(0f, 0f);
+            Anima.SetBool("Descendo", false);
+            Anima.SetBool("Subindo", false);
 
         }
 
-        else if (Inimigo.transform.position.y >= 0)
+        else if (rb.linearVelocity.y < 0)
         {
 
-            if (Player.transform.position.y >= 0)
-            {
+            Anima.SetBool("Descendo", true);
+            Anima.SetBool("Subindo", false);
 
-                DistanciaY = Inimigo.transform.position.y + Player.transform.position.y;
+        }
 
-            }
+        else if (rb.linearVelocity.y > 0)
+        {
 
-            else if (Player.transform.position.y < 0)
-            {
+            Anima.SetBool("Subindo", true);
+            Anima.SetBool("Descendo", false);
 
-                DistanciaY = Inimigo.transform.position.y + (Player.transform.position.y * -1);
+        }
 
-            }
+        else
+        {
+
+            Anima.SetBool("Subindo", false);
+            Anima.SetBool("Descendo", false);
+
+        }
+
+        Anima.SetFloat("Andando", Math.Abs(rb.linearVelocity.x));
+
+    }
+
+    void TomouDano()
+    {
+        
+        if(Ataque.Acertou == true && Vida > 0f)
+        {
+            
+            Vida -= Ataque.Dano;
+            Ataque.Acertou = false;
+
+        }
+
+        else if(Ataque.Acertou == true && Vida <= 0f)
+        {
+            
+            Destroy(this);
+            Ataque.Acertou = false;
 
         }
 
     }
-
 }
 
 
